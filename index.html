@@ -100,11 +100,11 @@
 
       const exportToExcel = () => {
         try {
-          let csvContent = "Fahrzeug,Typ,Details,VIN,KM-Stand,TÜV Datum,TÜV Kosten,Ölwechsel Datum,Ölwechsel KM,Steuer,Steuer Fällig,Versicherung,Versicherung Fällig,Reparaturen Gesamt,Gesamtkosten\\n";
+          let csvContent = "Fahrzeug,Typ,Details,VIN,KM-Stand,TÜV Datum,TÜV Kosten,Ölwechsel Datum,Ölwechsel KM,Steuer,Steuer Fällig,Versicherung,Versicherung Fällig,Reparaturen Gesamt,Gesamtkosten\n";
           vehicles.forEach(v => {
             const repairsTotal = v.repairs.reduce((sum, r) => sum + (r.cost || 0), 0);
             const row = [v.name, v.type === 'car' ? 'Auto' : 'Motorrad/Roller', v.details, v.vin || '', v.currentKm || 0, v.tuv.date || '', v.tuv.cost || 0, v.oil.lastChange || '', v.oil.lastKm || 0, v.tax.amount || 0, v.tax.dueDate || '', v.insurance.amount || 0, v.insurance.dueDate || '', repairsTotal.toFixed(2), getVehicleTotalCost(v).toFixed(2)];
-            csvContent += row.map(field => \`"\${field}"\`).join(',') + "\\n";
+            csvContent += row.map(field => `"${field}"`).join(',') + "\n";
           });
           const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
           const url = URL.createObjectURL(blob);
