@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1f2937">
   <title>Fahrzeugverwaltung</title>
-  <link rel="manifest" href="manifest.json">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div id="root"></div>
- <script src="app.js"></script>
+  <script type="module">
+    import { h, render } from 'https://esm.sh/preact@10.19.3';
+    import { useState, useEffect } from 'https://esm.sh/preact@10.19.3/hooks';
+    import htm from 'https://esm.sh/htm@3.1.1';
+    const html = htm.bind(h);
+    
+    // I'll give you the app code in next message - this tests if Preact works first
+    
+    const App = () => {
+      return html`<div class="min-h-screen bg-gray-900 text-white p-6">
+        <h1 class="text-4xl font-bold">Fahrzeugverwaltung Test</h1>
+        <p class="text-gray-400">If you see this, Preact is working! ✅</p>
+      </div>`;
+    };
+    
+    render(html`<${App} />`, document.getElementById('root'));
+  </script>
 </body>
 </html>
